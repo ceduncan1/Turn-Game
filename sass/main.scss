@@ -2,5 +2,39 @@
 @import "font-awesome";
 
 body {
-  background: #e2ebf3;
+  background: black;
+  text-align: center;
+  color: grey;
+  position: relative;
+  padding: 100px 0;
+}
+
+img {
+  max-height: 275px;
+}
+
+// #good {
+//   img {
+//     float: left;
+//   }
+// }
+
+#bad {
+  padding-left: 140px;
+}
+
+button {
+  border: 1px solid grey;
+  border-radius: 20px;
+  background-color: #501B29;
+  padding: 20px;
+  // display: inline-block;
+  // vertical-align: middle;
+  position: absolute;
+  top: 255px;
+}
+
+.charDiv {
+  display: inline-block;
+  margin: 50px;
 }

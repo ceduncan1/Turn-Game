@@ -1,4 +1,4 @@
-let BadGuy = function(name, minHP, maxHP, defeatMsg) {
+let BadGuy = function(name, minHP, maxHP, defeatMsg, imgSrc) {
 
   this.health = 100;
 
@@ -11,6 +11,7 @@ let BadGuy = function(name, minHP, maxHP, defeatMsg) {
   this.minHP = minHP;
   this.maxHP = maxHP;
   this.defeatMsg = defeatMsg;
+  this.imgSrc = imgSrc;
 
 };
 

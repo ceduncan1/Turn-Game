@@ -4,7 +4,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var BadGuy = function BadGuy(name, minHP, maxHP, defeatMsg) {
+var BadGuy = function BadGuy(name, minHP, maxHP, defeatMsg, imgSrc) {
 
   this.health = 100;
 
@@ -17,6 +17,7 @@ var BadGuy = function BadGuy(name, minHP, maxHP, defeatMsg) {
   this.minHP = minHP;
   this.maxHP = maxHP;
   this.defeatMsg = defeatMsg;
+  this.imgSrc = imgSrc;
 };
 
 exports["default"] = BadGuy;
@@ -28,7 +29,7 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var GoodGuy = function GoodGuy(name, minHP, maxHP, defeatMsg) {
+var GoodGuy = function GoodGuy(name, minHP, maxHP, defeatMsg, imgSrc) {
 
   this.health = 100;
 
@@ -41,6 +42,7 @@ var GoodGuy = function GoodGuy(name, minHP, maxHP, defeatMsg) {
   this.minHP = minHP;
   this.maxHP = maxHP;
   this.defeatMsg = defeatMsg;
+  this.imgSrc = imgSrc;
 };
 
 exports["default"] = GoodGuy;
@@ -71,14 +73,16 @@ var _badguy = require('./badguy');
 
 var _badguy2 = _interopRequireDefault(_badguy);
 
-// Good guys
-
 console.log('Good vs Evil');
 
-var charlieBrown = new _goodguy2['default']('Charlie Brown', 0, 15, 'With a swift kick like Morten Andersen, good old Charlie Brown delivers one final kick to defeat ');
+var hpImg = 'http://cdn.playbuzz.com/cdn/05612ae3-0911-4e51-8ff5-0c5b1b580cbf/5c212545-2724-4231-9805-82e931028689.jpg';
+var volImg = 'https://upload.wikimedia.org/wikipedia/en/a/a3/Lordvoldemort.jpg';
+
+// Good guys
+var charlieBrown = new _goodguy2['default']('Charlie Brown', 0, 15, 'With a swift kick like Morten Andersen, good old Charlie Brown delivers one final blow to defeat ');
 var smeagol = new _goodguy2['default']('Smeagol', 5, 20, 'Cruel men hurts us. Master tricksed us. They tried to steal our precious, but she killed ');
 var liamNeeson = new _goodguy2['default']('Liam Neeson', 10, 25, 'Liam Neeson has a particular set of skills. Skills he has aquired over a very long career. Skills that make him a nightmare for people like you. He looked for you, he found you, and he killed you, ');
-var harryPotter = new _goodguy2['default']('Harry Potter', 15, 30, ' ');
+var harryPotter = new _goodguy2['default']('Harry Potter', 15, 30, 'Harry Potter expecto patronumed ', hpImg);
 
 // on click button to select myGoodGuy
 
@@ -86,7 +90,7 @@ var harryPotter = new _goodguy2['default']('Harry Potter', 15, 30, ' ');
 var lucy = new _badguy2['default']('Lucy van Pelt', 3, 11, 'Lucy: Usually I charge 5 cents for this kind of therapy, ');
 var gollum = new _badguy2['default']('Gollum', 8, 16, 'Cruel men hurts us. Master tricksed us. They tried to steal our precious, but she killed ');
 var kidnapper = new _badguy2['default']('Kidnappers', 13, 21, 'Got ya, ');
-var voldemort = new _badguy2['default']('Voldemort', 18, 26, 'Voldemort avada kedavra-ed ');
+var voldemort = new _badguy2['default']('Voldemort', 20, 30, 'Voldemort avada kedavra-ed ', volImg);
 
 // on click button to select myBadGuy
 
@@ -97,33 +101,33 @@ var bgHealth = (0, _jquery2['default'])('.bgHealth'); //.bgHealth is class of he
 var ggAttack = (0, _jquery2['default'])('.ggAttack'); //.ggAttack is class of button
 
 // Show current (default health)
-ggHealth.text(charlieBrown.health);
-bgHealth.text(lucy.health);
+ggHealth.text(harryPotter.health);
+bgHealth.text(voldemort.health);
 
 // Setting up ON Event: attack
 ggAttack.on('click', function () {
 
   // Generate a random amount of hit points
   // Then attack!!!
-  var GGHP = _underscore2['default'].random(charlieBrown.minHP, charlieBrown.maxHP);
-  lucy.hit(GGHP);
-  var BGHP = _underscore2['default'].random(lucy.minHP, lucy.maxHP);
+  var GGHP = _underscore2['default'].random(harryPotter.minHP, harryPotter.maxHP);
+  voldemort.hit(GGHP);
+  var BGHP = _underscore2['default'].random(voldemort.minHP, voldemort.maxHP);
 
-  if (lucy.health <= 0) {
+  if (voldemort.health <= 0) {
     bgHealth.text('Defeated');
-    alert(charlieBrown.defeatMsg + lucy.name + '!!!');
+    alert(harryPotter.defeatMsg + voldemort.name + '!!!');
   } else {
-    bgHealth.text(lucy.health);
-    alert(lucy.name + ' retaliates!');
-    charlieBrown.hit(BGHP);
-    if (charlieBrown.health <= 0) {
+    bgHealth.text(voldemort.health);
+    alert(voldemort.name + ' retaliates!');
+    harryPotter.hit(BGHP);
+    if (harryPotter.health <= 0) {
       ggHealth.text('Defeated');
-      alert(lucy.defeatMsg + charlieBrown.name + '!!!');
+      alert(voldemort.defeatMsg + harryPotter.name + '!!!');
     };
-    ggHealth.text(charlieBrown.health);
+    ggHealth.text(harryPotter.health);
   };
 
-  console.log(lucy);
+  console.log(voldemort);
 });
 
 // Templates
